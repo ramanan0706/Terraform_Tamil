@@ -93,7 +93,7 @@ terraform plan
 terraform apply 
 ```
 
-## Step-04: Verify the Virtual Machine in Azure Management Console
+## Step-04: Verify the EC2 Instance in Azure Management Console
 - Go to Azure Management Console -> Services -> Virtual Machine
 - Verify newly created Virtual Machine
 
