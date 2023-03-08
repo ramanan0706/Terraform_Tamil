@@ -1,30 +1,23 @@
-resource "azurerm_resource_group" "terra-rg-01" {
-  name = "terraform-rg-01"
-  location = "eastus"
 
-  tags = {
-    "Environment" = "DEV"
-  }
-}
 
 resource "azurerm_virtual_network" "terra-vnet" {
-  resource_group_name = azurerm_resource_group.terra-rg-01.name
+  resource_group_name = "terraform-rg-01"
   name = "terra-vnet"
-    location = azurerm_resource_group.terra-rg-01.location
+    location = "eastus"
     address_space = ["10.0.0.0/16" ]
 }
 
 resource "azurerm_subnet" "terra-subnet" {
   name = "terra-subnet"
-  resource_group_name = azurerm_resource_group.terra-rg-01.name
+  resource_group_name = "terraform-rg-01"
   virtual_network_name = azurerm_virtual_network.terra-vnet.name
   address_prefixes = ["10.0.1.0/24"]
 }
 
 resource "azurerm_network_interface" "name" {
   name = "terra-nw-interface"
-  resource_group_name = azurerm_resource_group.terra-rg-01.name
-  location = azurerm_resource_group.terra-rg-01.location
+  resource_group_name = "terraform-rg-01"
+  location = "eastus"
   ip_configuration {
     name = "interal"
     subnet_id = azurerm_subnet.terra-subnet.id
@@ -34,8 +27,8 @@ resource "azurerm_network_interface" "name" {
 
 resource "azurerm_network_security_group" "terra-nsg" {
   name = "terra-nsg"
-  resource_group_name = azurerm_resource_group.terra-rg-01.name
-  location = azurerm_resource_group.terra-rg-01.location
+  resource_group_name = "terraform-rg-01"
+  location = "eastus"
   security_rule {
     name = "inbound-1"
     description = "test"
@@ -55,4 +48,11 @@ resource "azurerm_network_security_group" "terra-nsg" {
 resource "azurerm_network_interface_security_group_association" "name" {
   network_interface_id = azurerm_network_interface.name.id
   network_security_group_id = azurerm_network_security_group.terra-nsg.id
+}
+
+
+resource "time_sleep" "wait_30_seconds" {
+
+
+  create_duration = "30s"
 }
