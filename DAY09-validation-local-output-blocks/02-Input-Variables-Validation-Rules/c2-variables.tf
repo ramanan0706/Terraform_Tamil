@@ -10,9 +10,10 @@ variable "ec2_ami_id" {
   type        = string
   default     = "ami-0915bcb5fa77e4892" # Amazon2 Linux AMI ID
   validation {
-    condition = length(var.ec2_ami_id) > 4 && substr(var.ec2_ami_id, 0, 4) == "ami-"
-    error_message = "The ec2_ami_id value must be a valid AMI id, starting with \"ami-\"."
+    condition = length(var.ec2_ami_id) > 4 || substr(var.ec2_ami_id, 0,4) == "ami-"
+    error_message = "The AMI ID should be more than 4 characters"
   }
+  
 }
 
 variable "ec2_instance_count" {
@@ -24,5 +25,8 @@ variable "ec2_instance_count" {
 variable "ec2_instance_type" {
   description = "EC2 Instance Type"
   type = string
-  default = "t3.micro"
+  validation {
+    condition = var.ec2_instance_type == "t2.micro" || var.ec2_instance_type == "t2.nano" || var.ec2_instance_type == "t3.micro"
+    error_message = "It should be either t2.micro or t2.nano or t3.micro"
+  }
 }

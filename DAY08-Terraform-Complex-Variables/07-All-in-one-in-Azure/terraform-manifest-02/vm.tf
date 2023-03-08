@@ -17,7 +17,7 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
     sku = "18.04-LTS"
     version = "latest"
   }
-
+  custom_data = file("az.sh")
 }
 
 # resource "azurerm_managed_disk" "name" {

@@ -1,0 +1,2 @@
+Instance_id = "arn:aws:ec2:us-east-1:157673692367:instance/i-0482134b81baaffb3"
+public_ip = "3.237.242.181"

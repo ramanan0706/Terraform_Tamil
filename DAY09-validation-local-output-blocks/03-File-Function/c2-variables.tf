@@ -22,3 +22,20 @@ variable "ec2_instance_type" {
   type = string
   default = "t3.micro"
 }
+
+
+variable "company_name" {
+  type = string
+}
+
+variable "team_name" {
+  type = string
+}
+
+variable "project_name" {
+  type = string
+}
+
+variable "team_number" {
+  type = number
+}
