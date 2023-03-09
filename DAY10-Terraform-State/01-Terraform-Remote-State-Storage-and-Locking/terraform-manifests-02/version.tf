@@ -6,12 +6,12 @@ terraform {
       version = "3.34.0"
     }
   }
-
+  
   backend "azurerm" {
-    resource_group_name = "terraform-rg-01"
-    storage_account_name = "terraformstatestoragexxx"
-    container_name = "terraform-state"
-    key = "dev.terraform.state"
+    resource_group_name  = "terraform-rg-01"
+    storage_account_name = "terraformstatefilexxx"
+    container_name       = "tfstate"
+    key                  = "prod.terraform.tfstate"
   }
 }
 

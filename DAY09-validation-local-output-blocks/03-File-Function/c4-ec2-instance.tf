@@ -17,12 +17,6 @@ resource "aws_instance" "my-ec2-vm" {
   }
 }
 
-resource "aws_s3_bucket" "sample" {
-  bucket = "tst-157673692367"
-  tags = {
-    app_id = "${local.appid}-s3-abcd"
-  }
-}
 
 
 

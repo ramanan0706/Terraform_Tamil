@@ -4,7 +4,7 @@ resource "azurerm_virtual_network" "terra-vnet" {
   resource_group_name = "terraform-rg-01"
   name = "terra-vnet"
     location = "eastus"
-    address_space = ["10.0.0.0/16" ]
+    address_space = ["10.0.0.0/24" ]
 }
 
 resource "azurerm_subnet" "terra-subnet" {
@@ -50,9 +50,3 @@ resource "azurerm_network_interface_security_group_association" "name" {
   network_security_group_id = azurerm_network_security_group.terra-nsg.id
 }
 
-
-resource "time_sleep" "wait_30_seconds" {
-
-
-  create_duration = "30s"
-}

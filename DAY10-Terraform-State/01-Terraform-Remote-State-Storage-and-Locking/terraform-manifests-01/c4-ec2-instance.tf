@@ -11,6 +11,3 @@ resource "aws_instance" "my-ec2-vm-03" {
   availability_zone = "ap-south-1b"
 }
 
-
-
-
