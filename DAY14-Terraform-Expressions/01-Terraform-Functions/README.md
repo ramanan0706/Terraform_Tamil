@@ -87,19 +87,9 @@ lookup({"web" = ["10.0.1.0/24","10.0.2.0/24"], "app" = ["10.0.11.0/24","10.0.12.
 
 ```
 
-## Step-05: Encoding Functions
-```t
-# Terraform Console
-terraform console
 
-# base64decode Function: Takes a string containing a Base64 character sequence and returns the original string.
-base64decode("SGVsbG8gV29ybGQ=")
 
-# base64encode Function: Applies Base64 encoding to a string.
-base64encode("Hello World")
-```
-
-## Step-06: templatefile & concat Function - Review TF Files
+## Step-05: templatefile & concat Function - Review TF Files
 - **Reference Folder:** terraform-manifests
 ### c1-versions.tf
 - No changes
@@ -151,7 +141,7 @@ sudo yum install -y ${package_name}
 sudo yum list installed | grep ${package_name} >> /tmp/package-installed-list.txt
 ```
 
-## Step-08: Execute Terraform Commands
+## Step-06: Execute Terraform Commands
 - Verify the installed packages
 ```t
 # Terraform Initialize
@@ -177,7 +167,7 @@ ssh -i private-key/terraform-key ec2-user@<PUBLIC-IP>
 cat /tmp/package-installed-list.txt
 ```
 
-## Step-08: Clean-Up
+## Step-07: Clean-Up
 ```t
 # Destroy Resources
 terraform destory -auto-approve
@@ -187,7 +177,7 @@ rm -rf .terraform*
 rm -rf terraform.tfstate*
 ```
 
-## Step-09: Other Function Categories
+## Step-08: Other Function Categories
 - [Date and Time Functions](https://www.terraform.io/docs/language/functions/formatdate.html)
 - [Hash and Crypto Functions](https://www.terraform.io/docs/language/functions/base64sha256.html)
 - [IP Network Functions](https://www.terraform.io/docs/language/functions/cidrhost.html)
