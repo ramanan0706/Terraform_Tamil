@@ -1,11 +1,9 @@
 module "s3_bucket" {
-  source = "terraform-aws-modules/s3-bucket/aws"
+  source = "terraform-aws-modules/vpc/aws"
 
-  bucket = "my-s3-bucket"
-  acl    = "private"
+}
 
-  versioning = {
-    enabled = true
-  }
-
+module "iam" {
+  source  = "terraform-aws-modules/iam/aws"
+  version = "5.13.0"
 }

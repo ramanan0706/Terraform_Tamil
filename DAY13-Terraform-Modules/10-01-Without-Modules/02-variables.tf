@@ -13,6 +13,12 @@ variable "virtual_network_name" {
     default = "dev-vm-network-01"
 }
 
+variable "virtual_network_address" {
+  type = list(string)
+  description = "it is holding list of virtual address"
+  default = [ "10.0.0.0/16" ]
+}
+
 variable "subnet_name" {
     type = string
     default = "default"

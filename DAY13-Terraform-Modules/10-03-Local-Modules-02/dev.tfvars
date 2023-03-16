@@ -29,7 +29,7 @@ egress_security_group = [
 ]
 
 security_group_name = "terraform SG"
-user_data_script = "package-install.sh"
+user_data_script = "java-package-install.sh"
 instance_name = "module-test-01"
 key_name = "ec2_key_pair"
 instance_type = "t3.micro"

@@ -12,3 +12,4 @@ module "ec2_instnaces" {
   ec2_instance_type = var.instance_type
 
 }
+
