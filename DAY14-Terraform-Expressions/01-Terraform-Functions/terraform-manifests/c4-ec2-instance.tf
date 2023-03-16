@@ -16,7 +16,7 @@ resource "aws_instance" "my-ec2-vm" {
   ami           = data.aws_ami.amzlinux.id 
   instance_type = local.instance_type
   key_name      = "terraform-key"
-  #user_data = file("apache-install.sh")  
+  #user_data = file("install.sh")  
   user_data =  templatefile("user_data.tmpl", {package_name1 = var.package_name, package_name2 = "git"})
 
   vpc_security_group_ids = [aws_security_group.vpc-ssh.id, aws_security_group.vpc-web.id]
