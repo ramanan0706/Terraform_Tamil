@@ -1,0 +1,8 @@
+#! /bin/bash
+sudo yum update -y
+sudo yum install -y ${package_name1}
+sudo yum list installed | grep ${package_name1} >> /tmp/package-installed-list.txt
+
+sudo yum install -y ${package_name2}
+sudo yum list installed | grep ${package_name2} >> /tmp/package-installed-list2.txt
+

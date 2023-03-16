@@ -119,3 +119,6 @@ resource "aws_sns_topic_subscription" "terra-sub" {
   endpoint = "suresh.akidev@gmail.com"
   endpoint_auto_confirms = true
 }
+
+
+

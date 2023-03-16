@@ -4,7 +4,7 @@ resource "aws_instance" "vm-01" {
   availability_zone = "us-east-1e"
   instance_type = "t2.micro"
   subnet_id = "subnet-0d260ebfe3ece0ded"
-  vpc_security_group_ids = [aws_security_group.sg_label_01.id]
+  vpc_security_group_ids = [aws_security_group.terra_sg.id]
   key_name = "ec2_key_pair"
   root_block_device{
     volume_size = 20
