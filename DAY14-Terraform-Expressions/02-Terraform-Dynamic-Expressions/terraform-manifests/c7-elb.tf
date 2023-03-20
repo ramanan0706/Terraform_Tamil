@@ -1,8 +1,6 @@
 # AWS ELB
 resource "aws_elb" "elb" {
-  # Dynamic Expressions
-  count = (var.high_availability == true ? 1 : 0)
-
+  count = var.high_availability == false ? 0 : 1
   name    = "my-elb"
   listener {
     instance_port     = 80
@@ -26,6 +24,6 @@ resource "aws_elb" "elb" {
   instances                   = aws_instance.my-ec2-vm[*].id
 
   availability_zones = var.availability_zones
-  tags = local.common_tags
+
 }
 

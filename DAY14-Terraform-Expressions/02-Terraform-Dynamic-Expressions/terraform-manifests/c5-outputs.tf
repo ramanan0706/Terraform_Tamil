@@ -4,7 +4,6 @@
 output "ec2_instance_publicip" {
   description = "EC2 Instance Public IP"
   value = aws_instance.my-ec2-vm[*].public_ip
-#   value = [for temp_ip in aws_instance.my-ec2-vm: temp_ip.public_ip]
 }
 
 
@@ -17,5 +16,5 @@ output "ec2_publicdns" {
 # ELB DNS Name
 output "elb_dns_name" {
   description = "ELB DNS Name"
-  value = aws_elb.elb[*].dns_name
+  value = aws_elb.elb.*.dns_name
 }

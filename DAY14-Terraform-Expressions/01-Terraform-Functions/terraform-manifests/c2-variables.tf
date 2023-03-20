@@ -5,10 +5,6 @@ variable "aws_region" {
   default = "ap-south-1"
 }
 
-# variable "instance_type" {
-#   description = "EC2 Instance Type - Instance Sizing"
-#   type = string
-# }
 
 variable "package_name" {
   description = "Provide Package that need to be installed with user_data"
@@ -16,9 +12,6 @@ variable "package_name" {
   default = "httpd"
 }
 
-# variable "environment" {
-#   type = string
-# }
 
 variable "app_type" {
   type = string

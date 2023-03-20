@@ -1,2 +1,1 @@
-high_availability = false
-name = "ttestset"
+high_availability = true
