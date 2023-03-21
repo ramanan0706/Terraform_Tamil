@@ -2,7 +2,7 @@
 resource "aws_instance" "my-ec2-vm" {
   ami           = data.aws_ami.amzlinux.id 
   instance_type = var.instance_type
-  key_name      = "ec2_private_key"   
+  key_name      = "ec2_key_pair"   
 	user_data = file("apache-install.sh")  
   vpc_security_group_ids = [aws_security_group.vpc-ssh.id, aws_security_group.vpc-web.id]
   tags = {
@@ -14,7 +14,7 @@ resource "aws_instance" "my-ec2-vm" {
     host = self.public_ip 
     user = "ec2-user"
     password = ""
-    private_key = file("private-key/ec2_private_key.pem")
+    private_key = file("private-key/ec2_key_pair.pem")
   }  
 
  # Copies the file-copy.html file to /tmp/file-copy.html
@@ -44,7 +44,7 @@ resource "aws_instance" "my-ec2-vm" {
   # provisioner "file" {
   #   source = "apps/file-copy.html"
   #   destination = "/var/www/html/file-copy.html"  
-  #   on_failure = continue
+  #   on_failure = continue  
   # }
 }
 

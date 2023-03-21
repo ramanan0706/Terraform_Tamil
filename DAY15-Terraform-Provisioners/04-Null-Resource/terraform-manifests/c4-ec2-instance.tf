@@ -6,49 +6,40 @@ resource "aws_instance" "my-ec2-vm" {
 	user_data = file("apache-install.sh")  
   vpc_security_group_ids = [aws_security_group.vpc-ssh.id, aws_security_group.vpc-web.id]
   tags = {
-    "Name" = "vm-dev"
+    "Name" = "vm-dev-null-res-asdfasdf"
   }
+
 }
 
-resource "time_sleep" "wait_30_seconds" {
+resource "time_sleep" "test-terra" {
   depends_on = [
-    aws_instance.my-ec2-vm
+    null_resource.terra
   ]
-  create_duration = "60s"
+  create_duration = "30s"
 }
 
-# Sync App1 Static Content to Webserver using Provisioners
-resource "null_resource" "sync_app1_static" {
-  depends_on = [time_sleep.wait_30_seconds]
-
-  # Connection Block for Provisioners to connect to EC2 Instance
-  connection {
+resource "null_resource" "terra" {
+    connection {
     type = "ssh"
-    host = aws_instance.my-ec2-vm.public_ip 
+    host = "13.234.78.209"  
     user = "ec2-user"
     password = ""
     private_key = file("private-key/ec2_private_key.pem")
-  }  
-
- # Copies the app1 folder to /tmp
-  provisioner "file" {
-    source      = "apps/app1"
-    destination = "/tmp"
   }
 
-#Copies the /tmp/app1 folder to Apache Webserver /var/www/html directory
   provisioner "remote-exec" {
-    inline = [
-      "sudo cp -r /tmp/app1 /var/www/html"
-    ]
+    script = "scripts/test.sh"
   }
 
   triggers = {
-    always-trigger = timestamp()
+    always_trigger = timestamp()
   }
 }
 
 
-
-
-
+resource "aws_sns_topic" "sns" {
+    depends_on = [
+    time_sleep.test-terra
+  ]
+  display_name = "test-sns"
+}

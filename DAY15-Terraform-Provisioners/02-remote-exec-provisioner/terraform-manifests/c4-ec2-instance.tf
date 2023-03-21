@@ -1,3 +1,4 @@
+
 # Create EC2 Instance - Amazon Linux
 resource "aws_instance" "my-ec2-vm" {
   ami           = data.aws_ami.amzlinux.id 
@@ -6,32 +7,34 @@ resource "aws_instance" "my-ec2-vm" {
 	user_data = file("apache-install.sh")  
   vpc_security_group_ids = [aws_security_group.vpc-ssh.id, aws_security_group.vpc-web.id]
   tags = {
-    "Name" = "vm-dev"
+    "Name" = "remote-exec-new-vm-dev"
   }
 
-  # Connection Block for Provisioners to connect to EC2 Instance
   connection {
     type = "ssh"
-    host = self.public_ip # Understand what is "self"
+    host = "13.234.78.209"  
     user = "ec2-user"
     password = ""
     private_key = file("private-key/ec2_private_key.pem")
-  }  
-
- # Copies the file-copy.html file to /tmp/file-copy.html
-  provisioner "file" {
-    source      = "apps/file-copy.html"
-    destination = "/tmp/file-copy.html"
   }
 
-# Copies the file to Apache Webserver /var/www/html directory
+  provisioner "file" {
+    source = "script/test.sh"
+    destination = "/tmp/test.sh"
+  }
+
   provisioner "remote-exec" {
     inline = [
-      "sleep 30", 
-      "sudo cp /tmp/file-copy.html /var/www/html"
+      "sh /tmp/test.sh"
     ]
   }
+
+  provisioner "remote-exec" {
+    script = "script/test.sh"
+  }
 }
+
+
 
 
 

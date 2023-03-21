@@ -11,6 +11,7 @@ resource "aws_instance" "my-ec2-vm" {
 
   # local-exec provisioner (Creation-Time Provisioner - Triggered during Create Resource)
   provisioner "local-exec" {
+    when = create
     command = "echo ${aws_instance.my-ec2-vm.private_ip} >> creation-time-private-ip.txt"
     working_dir = "local-exec-output-files/"
     #on_failure = continue
