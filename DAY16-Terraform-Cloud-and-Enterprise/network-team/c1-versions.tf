@@ -1,6 +1,6 @@
 # Terraform Block
 terraform {
-  required_version = "~> 1.3.0"
+  required_version = "~> 1.4.0"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -14,14 +14,14 @@ terraform {
     organization = "skillupwithstan"
 
     workspaces {
-      name = "cli-driven-aws"
+      name = "NETWORK-TEAM"
     }
   }
 }
 
 # Provider Block
 provider "aws" {
-  region  = var.aws_region
+  region  =  "ap-south-1"
 }
 
 

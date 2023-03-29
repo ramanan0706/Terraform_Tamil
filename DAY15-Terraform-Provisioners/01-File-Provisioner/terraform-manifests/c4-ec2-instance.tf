@@ -21,6 +21,7 @@ resource "aws_instance" "my-ec2-vm" {
   provisioner "file" {
     source      = "apps/file-copy.html"
     destination = "/tmp/file-copy.html"
+    on_failure = fail
   }
 
 #   # Copies the string in content into /tmp/file.log
